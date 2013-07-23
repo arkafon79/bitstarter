@@ -1,9 +1,15 @@
+var fs = require('fs');
 var express = require('express');
 var app = express();
 app.use(express.logger());
 
+var callback = function (err, data) {
+  if (err) throw err;
+};
+stOut = fs.readFileSync('index.html', callback);
+
 app.get('/', function(request, response) {
-  response.send('Hello World 2!');
+  response.send(stOut);
 });
 
 var port = process.env.PORT || 5000;
