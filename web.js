@@ -3,13 +3,9 @@ var express = require('express');
 var app = express();
 app.use(express.logger());
 
-var callback = function (err, data) {
-  if (err) throw err;
-};
-stOut = fs.readFileSync('index.html', callback);
-
+var contents = fs.readFileSync('index.html');
 app.get('/', function(request, response) {
-  response.send(stOut);
+  response.send(contents);
 });
 
 var port = process.env.PORT || 5000;
